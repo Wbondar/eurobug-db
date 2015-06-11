@@ -2,18 +2,19 @@
 
 source ./conf/domains.conf
 source ./conf/credentials.conf
-TEMPLATE='/tmp/$USEReurobug.txt'
+TEMPLATE=./template.sql
+BASELINE=./baseline.sql
 
-touch $TEMPLATE
 
-echo 'START TRANSACTION;' >> $TEMPLATE
-cat ./tables/* ./sequences/* ./triggers/* ./views/* ./routines/* ./users/* >> $TEMPLATE
+echo '' > $TEMPLATE
+echo "START TRANSACTION;SET sql_mode='ANSI_QUOTES';" >> $TEMPLATE
+cat ./tables/* ./sequences/* ./triggers/* ./views/* ./routines/* ./users/* ./data/* >> $TEMPLATE
 echo 'COMMIT;' >> $TEMPLATE
 
-BASELINE=./baseline.sql
-touch $BASELINE
+chmod 777 $BASELINE
+echo '' > $BASELINE
 chmod 644 $BASELINE
-eval "echo \"$(< $TEMPLATE)\"" > $BASELINE
+java -jar ./scripts/tokenizer.jar $TEMPLATE $BASELINE ./conf/project_descriptor.xml > ./logs/building.log
 chmod 444 $BASELINE
 
 rm $TEMPLATE

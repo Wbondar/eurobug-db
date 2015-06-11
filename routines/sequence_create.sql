@@ -1,0 +1,22 @@
+DELIMITER ENDROUTINE
+
+CREATE PROCEDURE sequence_create
+(
+      IN  arg_sequence_title ${SEQUENCE_TITLE_TYPE}
+    , OUT arg_sequence_id    ${SEQUENCE_ID_TYPE}
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+MODIFIES SQL DATA
+SQL SECURITY DEFINER
+BEGIN
+    START TRANSACTION
+    ;
+    INSERT INTO sequence (title) VALUES
+    (LOWER(arg_sequence_title))
+    ;
+    COMMIT
+    ;
+END
+ENDROUTINE
+DELIMITER ;

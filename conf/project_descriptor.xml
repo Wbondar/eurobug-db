@@ -1,0 +1,244 @@
+<project>
+  <parameters>
+    <parameter>
+      <name>ACTIVITY_ID_TYPE</name>
+      <value>BIGINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ACTIVITY_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_ID_TYPE</name>
+      <value>BIGINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_TYPE_ID_TYPE</name>
+      <value>INTEGER UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_TYPE_META_TYPE</name>
+      <value>VARCHAR(100)</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_META_TYPE</name>
+      <value>VARCHAR(100)</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_ATTACHMENT_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_ATTACHMENT_CONTENT_TYPE</name>
+      <value>BLOB</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_ATTACHMENT_META_TYPE</name>
+      <value>VARCHAR(100)</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_ATTACHMENT_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_ATTACHMENT_CATEGORY_META_TYPE</name>
+      <value>VARCHAR(100)</value>
+    </parameter>
+    <parameter>
+      <name>ARTICLE_LOCALIZED_MESSAGE_TYPE</name>
+      <value>TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci</value>
+    </parameter>
+    <parameter>
+      <name>ATTACHMENT_TYPE_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ATTACHMENT_ID_TYPE</name>
+      <value>INTEGER UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ATTACHMENT_CONTENT_TYPE</name>
+      <value>BLOB</value>
+    </parameter>
+    <parameter>
+      <name>ASSET_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ASSET_TYPE_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>ASSET_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>CURRENCY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>CURRENCY_CODE_TYPE</name>
+      <value>CHAR(3)</value>
+    </parameter>
+    <parameter>
+      <name>DATETIME</name>
+      <value>DATETIME</value>
+    </parameter>
+    <parameter>
+      <name>EMAIL_DOMAIN_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>EMAIL_DOMAIN_VALUE_TYPE</name>
+      <value>VARCHAR(256)</value>
+    </parameter>
+    <parameter>
+      <name>EMAIL_ID_TYPE</name>
+      <value>INTEGER UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>EMAIL_ADDRESS_TYPE</name>
+      <value>VARCHAR(256)</value>
+    </parameter>
+    <parameter>
+      <name>EMAIL_LOCAL_VALUE_TYPE</name>
+      <value>VARCHAR(256)</value>
+    </parameter>
+    <parameter>
+      <name>ISSUE_ID_TYPE</name>
+      <value>INTEGER UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>LANGUAGE_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>LANGUAGE_CODE_TYPE</name>
+      <value>CHAR(3)</value>
+    </parameter>
+    <parameter>
+      <name>LOCALE_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>MEASURE_UNIT_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>MEASURE_UNIT_VALUE_TYPE</name>
+      <value>REAL</value>
+    </parameter>
+    <parameter>
+      <name>MEASURE_UNIT_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>NATIONALITY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PARTY_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PARTY_TYPE_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PARTY_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PARTY_CATEGORY_ASSIGNMENT_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PARAMETER_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PARAMETER_VALUE_TYPE</name>
+      <value>REAL</value>
+    </parameter>
+    <parameter>
+      <name>PERSON_ID_TYPE</name>
+      <value>INTEGER UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PERSON_NAME_FIRST_TYPE</name>
+      <value>VARCHAR(300)</value>
+    </parameter>
+    <parameter>
+      <name>PERSON_NAME_LAST_TYPE</name>
+      <value>VARCHAR(300)</value>
+    </parameter>
+    <parameter>
+      <name>PERSON_SEX_TYPE</name>
+      <value>CHAR(1)</value>
+    </parameter>
+    <parameter>
+      <name>PROJECT_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PROJECT_CATEGORY_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PHONE_NUMBER_ID_TYPE</name>
+      <value>SMALLINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>PHONE_NUMBER_VALUE_TYPE</name>
+      <value>VARCHAR(256)</value>
+    </parameter>
+    <parameter>
+      <name>REQUEST_ID_TYPE</name>
+      <value>INTEGER UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>SEQUENCE_ID_TYPE</name>
+      <value>TINYINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>SEQUENCE_CURRENT_VALUE_TYPE</name>
+      <value>BIGINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>SEQUENCE_NEXT_VALUE_TYPE</name>
+      <value>BIGINT UNSIGNED</value>
+    </parameter>
+    <parameter>
+      <name>SEQUENCE_TITLE_TYPE</name>
+      <value>VARCHAR(100)</value>
+    </parameter>
+    <parameter>
+      <name>USER_GUEST_NAME</name>
+      <value>guest</value>
+    </parameter>
+    <parameter>
+      <name>USER_MEMBER_NAME</name>
+      <value>member</value>
+    </parameter>
+    <parameter>
+      <name>USER_PRIVILEGED_NAME</name>
+      <value>privileged</value>
+    </parameter>
+    <parameter>
+      <name>USER_GUEST_PASSWORD</name>
+      <value>guest</value>
+    </parameter>
+    <parameter>
+      <name>USER_MEMBER_PASSWORD</name>
+      <value>member</value>
+    </parameter>
+    <parameter>
+      <name>USER_PRIVILEGED_PASSWORD</name>
+      <value>privileged</value>
+    </parameter>
+  </parameters>
+</project>
