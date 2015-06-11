@@ -8,9 +8,7 @@ LANGUAGE SQL
 NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
-BEGIN
-    START TRANSACTION
-    ;
+proc:BEGIN
     SET @var_sequence_title = "arg_sequence_title";
     SELECT sequence.id INTO @var_sequence_id 
     FROM sequence
@@ -21,11 +19,14 @@ BEGIN
         ;
     END IF 
     ;
+    IF @var_sequence_id IS NULL THEN
+        LEAVE proc
+        ;
+    END IF
+    ;
     SELECT sequence.next_value INTO arg_next_value 
     FROM sequence 
     WHERE sequence.id = @var_sequence_id
-    ;
-    COMMIT
     ;
 END
 ENDROUTINE

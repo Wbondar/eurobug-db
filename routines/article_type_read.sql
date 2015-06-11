@@ -10,20 +10,14 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
-    SELECT id INTO @var_article_type_id
+    SELECT article_type.id INTO arg_article_type_id
     FROM article_type 
     WHERE LOWER(article_type.meta) = LOWER(arg_article_type_meta)
     ;
-    IF @var_article_type_id IS NULL THEN
-        CALL article_type_create (arg_article_type_meta, @var_article_type_id)
+    IF arg_article_type_id IS NULL THEN 
+        CALL article_type_create (arg_article_type_meta, arg_article_type_id)
         ;
-    END IF 
-    ;
-    SELECT @var_article_type_id INTO arg_article_type_id
-    ;
-    COMMIT
+    END IF
     ;
 END
 ENDROUTINE

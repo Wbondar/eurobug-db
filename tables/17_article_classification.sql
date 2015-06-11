@@ -11,6 +11,6 @@ CREATE TABLE article_classification
             ON DELETE RESTRICT
             ON UPDATE RESTRICT
     , CONSTRAINT fk_article_classification_article_category_id
-        PRIMARY KEY (article_category_id, article_id)
+        PRIMARY KEY (article_id, article_category_id)
 )
 ;

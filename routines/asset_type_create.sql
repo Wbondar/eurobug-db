@@ -10,8 +10,6 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
     CALL nextval ('seq_asset_type_id', @var_asset_type_id)
     ;
     INSERT INTO asset_type (id, title_article_id) VALUES
@@ -20,8 +18,6 @@ BEGIN
     CALL setval ('seq_asset_type_id', @var_asset_type_id)
     ;
     SELECT @var_asset_type_id INTO arg_asset_type_id
-    ;
-    COMMIT
     ;
 END
 ENDROUTINE
@@ -39,8 +35,6 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
     CALL nextval ('seq_title_asset_type_id', @var_title_asset_type_id)
     ;
     CALL article_create_with_meta ('title_asset_type', CONCAT('title_asset_type', @var_title_asset_type_id), @var_title_article_id)
@@ -48,8 +42,6 @@ BEGIN
     CALL asset_type_create (@var_title_article_id, arg_asset_type_id)
     ;
     CALL setval ('seq_title_asset_type_id', @var_title_asset_type_id)
-    ;
-    COMMIT
     ;
 END
 ENDROUTINE

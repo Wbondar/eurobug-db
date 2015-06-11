@@ -1,6 +1,6 @@
 CREATE TABLE article
 (
-      id        ${ARTICLE_ID_TYPE}      NOT NULL AUTO_INCREMENT
+      id        ${ARTICLE_ID_TYPE}      NOT NULL
     , meta      ${ARTICLE_META_TYPE}    NOT NULL
     , type_id   ${ARTICLE_TYPE_ID_TYPE} NOT NULL
     /*, parent_id ${ARTICLE_ID_TYPE}          NULL DEFAULT NULL*/

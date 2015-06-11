@@ -10,12 +10,8 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
     INSERT INTO subarticle (parent_id, child_id) VALUES
     (arg_article_parent_id, arg_article_child_id)
-    ;
-    COMMIT
     ;
 END
 ENDROUTINE

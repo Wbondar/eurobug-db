@@ -10,8 +10,6 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
     SELECT asset_type.id INTO @var_asset_type_id
     FROM asset_type JOIN article ON asset_type.title_article_id = article.id
     WHERE LOWER(article.meta) = LOWER(arg_asset_type_meta)
@@ -22,8 +20,6 @@ BEGIN
     END IF 
     ;
     SELECT @var_asset_type_id INTO arg_asset_type_id
-    ;
-    COMMIT
     ;
 END
 ENDROUTINE

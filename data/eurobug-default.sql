@@ -1,3 +1,11 @@
+CALL sequence_create ('seq_article_id', @seq_article_id)
+;
+CALL sequence_create ('seq_article_type_id', @seq_article_type_id)
+;
+CALL sequence_create ('seq_article_category_id', @seq_article_category_id)
+;
+
+
 INSERT INTO article_type (id, meta) VALUES 
   (1, 'title_language')
 , (2, 'title_locale')
@@ -84,3 +92,58 @@ INSERT INTO nationality (id, title_article_id) VALUES
 INSERT INTO asset_type (id, title_article_id) VALUES
 (1, 12)
 ;
+
+CALL form_create ('login', @form_login_id)
+;
+CALL form_legend_create ('login', 'login_legend', @form_login_legend_login_id)
+;
+CALL article_localization_create_with_code (@form_login_legend_login_id, 'pol', 'Zalogowac sie.')
+;
+CALL article_localization_create_with_code (@form_login_legend_login_id, 'rus', 'Авторизация в системе.')
+;
+CALL form_label_create ('login', 'login_username', @form_login_label_username_id)
+;
+CALL article_localization_create_with_code (@form_login_label_username_id, 'pol', 'Nazwa konta:')
+;
+CALL article_localization_create_with_code (@form_login_label_username_id, 'rus', 'Имя учетной записи:')
+;
+CALL form_label_create ('login', 'login_password', @form_login_label_password_id)
+;
+CALL article_localization_create_with_code (@form_login_label_password_id, 'pol', 'Haslo:')
+;
+CALL article_localization_create_with_code (@form_login_label_password_id, 'rus', 'Пароль:')
+;
+CALL form_button_create ('login', 'Login_submit', @form_login_button_submit_id)
+;
+CALL article_localization_create_with_code (@form_login_button_submit_id, 'pol', 'Wyslij')
+;
+CALL article_localization_create_with_code (@form_login_button_submit_id, 'rus', 'Выслать запрос')
+;
+
+CALL form_create ('signup', @form_signup_id)
+;
+CALL form_legend_create ('signup', 'signup_legend', @form_signup_legend_signup_id)
+;
+CALL article_localization_create_with_code (@form_signup_legend_signup_id, 'pol', 'Zarejestrowac sie.')
+;
+CALL article_localization_create_with_code (@form_signup_legend_signup_id, 'rus', 'Регистрация в системе.')
+;
+CALL form_label_create ('signup', 'signup_username', @form_signup_label_username_id)
+;
+CALL article_localization_create_with_code (@form_signup_label_username_id, 'pol', 'Nazwa konta:')
+;
+CALL article_localization_create_with_code (@form_signup_label_username_id, 'rus', 'Имя учетной записи:')
+;
+CALL form_label_create ('signup', 'signup_password', @form_signup_label_password_id)
+;
+CALL article_localization_create_with_code (@form_signup_label_password_id, 'pol', 'Haslo:')
+;
+CALL article_localization_create_with_code (@form_signup_label_password_id, 'rus', 'Пароль:')
+;
+CALL form_button_create ('signup', 'signup_submit', @form_signup_button_submit_id)
+;
+CALL article_localization_create_with_code (@form_signup_button_submit_id, 'pol', 'Wyslij')
+;
+CALL article_localization_create_with_code (@form_signup_button_submit_id, 'rus', 'Выслать запрос')
+;
+COMMIT;

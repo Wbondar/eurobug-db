@@ -10,12 +10,8 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
-    INSERT INTO sequence (title) VALUES
-    (LOWER(arg_sequence_title))
-    ;
-    COMMIT
+    INSERT INTO sequence (title, next_value, current_value) VALUES
+    (LOWER(arg_sequence_title), 1, 0)
     ;
 END
 ENDROUTINE

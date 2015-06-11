@@ -8,7 +8,7 @@ BASELINE=./baseline.sql
 
 echo '' > $TEMPLATE
 echo "START TRANSACTION;SET sql_mode='ANSI_QUOTES';" >> $TEMPLATE
-cat ./tables/* ./sequences/* ./triggers/* ./views/* ./routines/* ./users/* ./data/* >> $TEMPLATE
+cat ./tables/* ./sequences/* ./views/* ./routines/* ./triggers/* ./users/* ./data/* >> $TEMPLATE
 echo 'COMMIT;' >> $TEMPLATE
 
 chmod 777 $BASELINE

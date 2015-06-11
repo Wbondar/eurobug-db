@@ -10,8 +10,6 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ;
     SELECT id INTO @var_sequence_id 
     FROM sequence
     WHERE LOWER(sequence.title) = LOWER(arg_sequence_title)
@@ -24,8 +22,6 @@ BEGIN
     SELECT sequence.current_value INTO arg_current_value 
     FROM sequence 
     WHERE sequence.id = @var_sequence_id
-    ;
-    COMMIT
     ;
 END
 ENDROUTINE

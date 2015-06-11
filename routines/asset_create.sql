@@ -11,14 +11,12 @@ NOT DETERMINISTIC
 MODIFIES SQL DATA
 SQL SECURITY DEFINER
 BEGIN
-    START TRANSACTION
-    ; 
-    CALL nextval ('seq_asset_id', @var_asset_id);
+    CALL nextval ('seq_asset_id', @var_asset_id)
+    ;
     INSERT INTO asset (id, title_article_id, type_id) VALUES
     (@var_asset_id, arg_article_id, arg_asset_type_id)
     ;
-    CALL setval ('seq_asset_id', @var_asset_id);
-    COMMIT
+    CALL setval ('seq_asset_id', @var_asset_id)
     ;
 END
 ENDROUTINE
