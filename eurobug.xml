@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="eurobug" type="MySQL - 5.6.24-0ubuntu2">
+   <tables>
+      <table name="article" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <child column="article_id" foreignKey="fk_article_attacment_article_id" implied="false" onDeleteCascade="false" table="article_attachment"/>
+            <child column="title_article_id" foreignKey="fk_article_category_title_article_id" implied="false" onDeleteCascade="false" table="article_category"/>
+            <child column="article_id" foreignKey="fk_article_classification_article_id" implied="false" onDeleteCascade="false" table="article_classification"/>
+            <child column="article_id" foreignKey="fk_article_localized_article_id" implied="false" onDeleteCascade="false" table="article_localized"/>
+            <child column="title_article_id" foreignKey="fk_asset_title_article_id" implied="false" onDeleteCascade="false" table="asset"/>
+            <child column="title_article_id" foreignKey="fk_asset_category_title_article_id" implied="false" onDeleteCascade="false" table="asset_category"/>
+            <child column="title_article_id" foreignKey="fk_asset_type_title_article_id" implied="false" onDeleteCascade="false" table="asset_type"/>
+            <child column="title_article_id" foreignKey="fk_attachment_category_title_article_id" implied="false" onDeleteCascade="false" table="attachment"/>
+            <child column="title_article_id" foreignKey="fk_attachment_type_title_article_id" implied="false" onDeleteCascade="false" table="attachment_type"/>
+            <child column="title_article_id" foreignKey="fk_language_title_article_id" implied="false" onDeleteCascade="false" table="language"/>
+            <child column="title_article_id" foreignKey="fk_locale_title_article_id" implied="false" onDeleteCascade="false" table="locale"/>
+            <child column="title_article_id" foreignKey="fk_measure_unit_title_article_id" implied="false" onDeleteCascade="false" table="measure_unit"/>
+            <child column="title_article_id" foreignKey="fk_nationality_title_article_id" implied="false" onDeleteCascade="false" table="nationality"/>
+            <child column="title_article_id" foreignKey="fk_party_title_article_id" implied="false" onDeleteCascade="false" table="party"/>
+            <child column="title_aritcle_id" foreignKey="fk_party_category_title_article_id" implied="false" onDeleteCascade="false" table="party_category"/>
+            <child column="title_article_id" foreignKey="fk_party_type_title_article_id" implied="false" onDeleteCascade="false" table="party_type"/>
+            <child column="child_id" foreignKey="fk_subarticle_child_id" implied="false" onDeleteCascade="false" table="subarticle"/>
+            <child column="parent_id" foreignKey="fk_subarticle_parent_id" implied="false" onDeleteCascade="false" table="subarticle"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="type_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_type_id" implied="false" onDeleteCascade="false" table="article_type"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="uk_article_type_id_meta" unique="true">
+            <column ascending="true" name="type_id"/>
+            <column ascending="true" name="meta"/>
+         </index>
+      </table>
+      <table name="article_attachment" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_attacment_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="attachment_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_attacment_attachment_id" implied="false" onDeleteCascade="false" table="attachment"/>
+         </column>
+         <primaryKey column="article_id" sequenceNumberInPK="1"/>
+         <primaryKey column="attachment_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="article_id"/>
+            <column ascending="true" name="attachment_id"/>
+         </index>
+         <index name="fk_article_attacment_attachment_id" unique="false">
+            <column ascending="true" name="attachment_id"/>
+         </index>
+      </table>
+      <table name="article_category" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="article_category_id" foreignKey="fk_article_classification_article_category_id" implied="false" onDeleteCascade="false" table="article_classification"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_category_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_article_category_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="article_classification" numRows="8" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="article_category_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_classification_article_category_id" implied="false" onDeleteCascade="false" table="article_category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_classification_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="article_category_id" sequenceNumberInPK="1"/>
+         <primaryKey column="article_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="article_id"/>
+            <column ascending="true" name="article_category_id"/>
+         </index>
+         <index name="fk_article_classification_article_category_id" unique="false">
+            <column ascending="true" name="article_category_id"/>
+         </index>
+      </table>
+      <table name="article_localized" numRows="46" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_localized_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_article_localized_language_id" implied="false" onDeleteCascade="false" table="language"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="message" nullable="false" remarks="" size="65535" type="TEXT"/>
+         <primaryKey column="article_id" sequenceNumberInPK="1"/>
+         <primaryKey column="language_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="article_id"/>
+            <column ascending="true" name="language_id"/>
+         </index>
+         <index name="fk_article_localized_language_id" unique="false">
+            <column ascending="true" name="language_id"/>
+         </index>
+      </table>
+      <table name="article_type" numRows="13" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="type_id" foreignKey="fk_article_type_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="meta" unique="true">
+            <column ascending="true" name="meta"/>
+         </index>
+      </table>
+      <table name="asset" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <child column="asset_id" foreignKey="fk_asset_classification_asset_id" implied="false" onDeleteCascade="false" table="asset_classification"/>
+            <child column="child_id" foreignKey="fk_asset_component_child_id" implied="false" onDeleteCascade="false" table="asset_component"/>
+            <child column="parent_id" foreignKey="fk_asset_component_parent_id" implied="false" onDeleteCascade="false" table="asset_component"/>
+            <child column="asset_id" foreignKey="fk_request_asset_asset_id" implied="false" onDeleteCascade="false" table="request_asset"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="type_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_type_id_asset_type_id" implied="false" onDeleteCascade="false" table="asset_type"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_asset_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+         <index name="fk_asset_type_id_asset_type_id" unique="false">
+            <column ascending="true" name="type_id"/>
+         </index>
+      </table>
+      <table name="asset_category" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="asset_category_id" foreignKey="fk_asset_classification_asset_category_id" implied="false" onDeleteCascade="false" table="asset_classification"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_category_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_asset_category_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="asset_classification" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="asset_category_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_classification_asset_category_id" implied="false" onDeleteCascade="false" table="asset_category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="asset_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_classification_asset_id" implied="false" onDeleteCascade="false" table="asset"/>
+         </column>
+         <primaryKey column="asset_category_id" sequenceNumberInPK="1"/>
+         <primaryKey column="asset_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="asset_category_id"/>
+            <column ascending="true" name="asset_id"/>
+         </index>
+         <index name="fk_asset_classification_asset_id" unique="false">
+            <column ascending="true" name="asset_id"/>
+         </index>
+      </table>
+      <table name="asset_component" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="parent_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_component_parent_id" implied="false" onDeleteCascade="false" table="asset"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="child_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_component_child_id" implied="false" onDeleteCascade="false" table="asset"/>
+         </column>
+         <primaryKey column="child_id" sequenceNumberInPK="1"/>
+         <primaryKey column="parent_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="parent_id"/>
+            <column ascending="true" name="child_id"/>
+         </index>
+         <index name="fk_asset_component_child_id" unique="false">
+            <column ascending="true" name="child_id"/>
+         </index>
+      </table>
+      <table name="asset_type" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <child column="type_id" foreignKey="fk_asset_type_id_asset_type_id" implied="false" onDeleteCascade="false" table="asset"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_asset_type_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_asset_type_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="attachment" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="attachment_id" foreignKey="fk_article_attacment_attachment_id" implied="false" onDeleteCascade="false" table="article_attachment"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_attachment_category_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="type_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_attachment_type_id_attachment_type_id" implied="false" onDeleteCascade="false" table="attachment_type"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="content" nullable="false" remarks="" size="65535" type="BLOB"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_attachment_category_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+         <index name="fk_attachment_type_id_attachment_type_id" unique="false">
+            <column ascending="true" name="type_id"/>
+         </index>
+      </table>
+      <table name="attachment_type" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="type_id" foreignKey="fk_attachment_type_id_attachment_type_id" implied="false" onDeleteCascade="false" table="attachment"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_attachment_type_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_attachment_type_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="email_address" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="domain_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_email_address_domain_id" implied="false" onDeleteCascade="false" table="email_domain"/>
+         </column>
+         <column autoUpdated="true" digits="0" id="1" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="email_address_id" foreignKey="fk_party_email_address_email_address_id" implied="false" onDeleteCascade="false" table="party_email_address"/>
+            <child column="email_address_id" foreignKey="fk_person_email_address_email_address_id" implied="false" onDeleteCascade="false" table="person_email_address"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="local" nullable="false" remarks="" size="256" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="uk_email_address" unique="true">
+            <column ascending="true" name="domain_id"/>
+            <column ascending="true" name="local"/>
+         </index>
+      </table>
+      <table name="email_domain" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="domain_id" foreignKey="fk_email_address_domain_id" implied="false" onDeleteCascade="false" table="email_address"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="value" nullable="false" remarks="" size="256" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="uk_email_domain" unique="true">
+            <column ascending="true" name="value"/>
+         </index>
+      </table>
+      <table name="language" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="language_id" foreignKey="fk_article_localized_language_id" implied="false" onDeleteCascade="false" table="article_localized"/>
+            <child column="language_id" foreignKey="fk_locale_language_language_id" implied="false" onDeleteCascade="false" table="locale_language"/>
+            <child column="language_id" foreignKey="fk_person_language_language_id" implied="false" onDeleteCascade="false" table="person_language"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="code" nullable="false" remarks="" size="3" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_language_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_language_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="locale" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <child column="locale_id" foreignKey="fk_locale_language_locale_id" implied="false" onDeleteCascade="false" table="locale_language"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_locale_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_locale_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="locale_language" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="locale_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_locale_language_locale_id" implied="false" onDeleteCascade="false" table="locale"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_locale_language_language_id" implied="false" onDeleteCascade="false" table="language"/>
+         </column>
+         <primaryKey column="language_id" sequenceNumberInPK="1"/>
+         <primaryKey column="locale_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="locale_id"/>
+            <column ascending="true" name="language_id"/>
+         </index>
+         <index name="fk_locale_language_language_id" unique="false">
+            <column ascending="true" name="language_id"/>
+         </index>
+      </table>
+      <table name="measure_unit" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="title_article_id" foreignKey="fk_measure_unit_category_title_article_id" implied="false" onDeleteCascade="false" table="measure_unit_category"/>
+            <child column="measure_unit_id" foreignKey="fk_measure_unit_classification_measure_unit_id" implied="false" onDeleteCascade="false" table="measure_unit_classification"/>
+            <child column="source" foreignKey="fk_measure_unit_conversion_target" implied="false" onDeleteCascade="true" table="measure_unit_conversion"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_measure_unit_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_measure_unit_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="measure_unit_category" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="measure_unit_category_id" foreignKey="fk_measure_unit_classification_measure_unit_category_id" implied="false" onDeleteCascade="false" table="measure_unit_classification"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_measure_unit_category_title_article_id" implied="false" onDeleteCascade="false" table="measure_unit"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_measure_unit_category_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="measure_unit_classification" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="measure_unit_category_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_measure_unit_classification_measure_unit_category_id" implied="false" onDeleteCascade="false" table="measure_unit_category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="measure_unit_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_measure_unit_classification_measure_unit_id" implied="false" onDeleteCascade="false" table="measure_unit"/>
+         </column>
+         <primaryKey column="measure_unit_category_id" sequenceNumberInPK="1"/>
+         <primaryKey column="measure_unit_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="measure_unit_category_id"/>
+            <column ascending="true" name="measure_unit_id"/>
+         </index>
+         <index name="fk_measure_unit_classification_measure_unit_id" unique="false">
+            <column ascending="true" name="measure_unit_id"/>
+         </index>
+      </table>
+      <table name="measure_unit_conversion" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="source" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_measure_unit_conversion_target" implied="false" onDeleteCascade="true" table="measure_unit"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="target" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="2" name="coefficient" nullable="false" remarks="" size="22" type="DOUBLE"/>
+         <primaryKey column="source" sequenceNumberInPK="1"/>
+         <primaryKey column="target" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="source"/>
+            <column ascending="true" name="target"/>
+         </index>
+      </table>
+      <table name="nationality" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_nationality_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_nationality_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="party" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <child column="party_id" foreignKey="fk_party_classification_party_id" implied="false" onDeleteCascade="false" table="party_classification"/>
+            <child column="party_id" foreignKey="fk_party_email_address_party_id" implied="false" onDeleteCascade="false" table="party_email_address"/>
+            <child column="party_id" foreignKey="fk_party_phone_number_party_id" implied="false" onDeleteCascade="false" table="party_phone_number"/>
+            <child column="party_id" foreignKey="fk_party_staff_party_id" implied="false" onDeleteCascade="false" table="party_staff"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="type_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_type_id_party_type_id" implied="false" onDeleteCascade="false" table="party_type"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_party_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+         <index name="fk_party_type_id_party_type_id" unique="false">
+            <column ascending="true" name="type_id"/>
+         </index>
+      </table>
+      <table name="party_category" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="party_category_id" foreignKey="fk_party_classification_party_category_id" implied="false" onDeleteCascade="false" table="party_classification"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_aritcle_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_category_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_party_category_title_article_id" unique="false">
+            <column ascending="true" name="title_aritcle_id"/>
+         </index>
+      </table>
+      <table name="party_classification" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="party_category_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_classification_party_category_id" implied="false" onDeleteCascade="false" table="party_category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="party_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_classification_party_id" implied="false" onDeleteCascade="false" table="party"/>
+         </column>
+         <primaryKey column="party_category_id" sequenceNumberInPK="1"/>
+         <primaryKey column="party_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="party_category_id"/>
+            <column ascending="true" name="party_id"/>
+         </index>
+         <index name="fk_party_classification_party_id" unique="false">
+            <column ascending="true" name="party_id"/>
+         </index>
+      </table>
+      <table name="party_email_address" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="party_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_email_address_party_id" implied="false" onDeleteCascade="false" table="party"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="email_address_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_email_address_email_address_id" implied="false" onDeleteCascade="false" table="email_address"/>
+         </column>
+         <primaryKey column="email_address_id" sequenceNumberInPK="1"/>
+         <primaryKey column="party_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="party_id"/>
+            <column ascending="true" name="email_address_id"/>
+         </index>
+         <index name="fk_party_email_address_email_address_id" unique="false">
+            <column ascending="true" name="email_address_id"/>
+         </index>
+      </table>
+      <table name="party_phone_number" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="party_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_phone_number_party_id" implied="false" onDeleteCascade="false" table="party"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="phone_number_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_phone_number_phone_number_id" implied="false" onDeleteCascade="false" table="phone_number"/>
+         </column>
+         <primaryKey column="party_id" sequenceNumberInPK="1"/>
+         <primaryKey column="phone_number_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="party_id"/>
+            <column ascending="true" name="phone_number_id"/>
+         </index>
+         <index name="fk_party_phone_number_phone_number_id" unique="false">
+            <column ascending="true" name="phone_number_id"/>
+         </index>
+      </table>
+      <table name="party_staff" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="party_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_staff_party_id" implied="false" onDeleteCascade="false" table="party"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="person_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_staff_person_id" implied="false" onDeleteCascade="false" table="person"/>
+         </column>
+         <primaryKey column="party_id" sequenceNumberInPK="1"/>
+         <primaryKey column="person_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="party_id"/>
+            <column ascending="true" name="person_id"/>
+         </index>
+         <index name="fk_party_staff_person_id" unique="false">
+            <column ascending="true" name="person_id"/>
+         </index>
+      </table>
+      <table name="party_type" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <child column="type_id" foreignKey="fk_party_type_id_party_type_id" implied="false" onDeleteCascade="false" table="party"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title_article_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_party_type_title_article_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_party_type_title_article_id" unique="false">
+            <column ascending="true" name="title_article_id"/>
+         </index>
+      </table>
+      <table name="person" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="person_id" foreignKey="fk_party_staff_person_id" implied="false" onDeleteCascade="false" table="party_staff"/>
+            <child column="person_id" foreignKey="fk_person_email_address_person_id" implied="false" onDeleteCascade="false" table="person_email_address"/>
+            <child column="person_id" foreignKey="fk_person_language_person_id" implied="false" onDeleteCascade="true" table="person_language"/>
+            <child column="person_id" foreignKey="fk_person_phone_number_person_id" implied="false" onDeleteCascade="false" table="person_phone_number"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name_first_article_id" nullable="false" remarks="" size="300" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="name_last_article_id" nullable="false" remarks="" size="300" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="sex" nullable="false" remarks="" size="1" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nationality_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="person_email_address" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="person_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_person_email_address_person_id" implied="false" onDeleteCascade="false" table="person"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="email_address_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_person_email_address_email_address_id" implied="false" onDeleteCascade="false" table="email_address"/>
+         </column>
+         <primaryKey column="email_address_id" sequenceNumberInPK="1"/>
+         <primaryKey column="person_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="person_id"/>
+            <column ascending="true" name="email_address_id"/>
+         </index>
+         <index name="fk_person_email_address_email_address_id" unique="false">
+            <column ascending="true" name="email_address_id"/>
+         </index>
+      </table>
+      <table name="person_language" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="person_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_person_language_person_id" implied="false" onDeleteCascade="true" table="person"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_person_language_language_id" implied="false" onDeleteCascade="false" table="language"/>
+         </column>
+         <primaryKey column="language_id" sequenceNumberInPK="1"/>
+         <primaryKey column="person_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="person_id"/>
+            <column ascending="true" name="language_id"/>
+         </index>
+         <index name="fk_person_language_language_id" unique="false">
+            <column ascending="true" name="language_id"/>
+         </index>
+      </table>
+      <table name="person_phone_number" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="person_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_person_phone_number_person_id" implied="false" onDeleteCascade="false" table="person"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="phone_number_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_person_phone_number_phone_number_id" implied="false" onDeleteCascade="false" table="phone_number"/>
+         </column>
+         <primaryKey column="person_id" sequenceNumberInPK="1"/>
+         <primaryKey column="phone_number_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="person_id"/>
+            <column ascending="true" name="phone_number_id"/>
+         </index>
+         <index name="fk_person_phone_number_phone_number_id" unique="false">
+            <column ascending="true" name="phone_number_id"/>
+         </index>
+      </table>
+      <table name="phone_number" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <child column="phone_number_id" foreignKey="fk_party_phone_number_phone_number_id" implied="false" onDeleteCascade="false" table="party_phone_number"/>
+            <child column="phone_number_id" foreignKey="fk_person_phone_number_phone_number_id" implied="false" onDeleteCascade="false" table="person_phone_number"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="value" nullable="false" remarks="" size="256" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="request" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="request_id" foreignKey="fk_request_asset_request_id" implied="false" onDeleteCascade="true" table="request_asset"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="who" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="2" name="to_whom" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="requested_at" nullable="false" remarks="" size="19" type="DATETIME"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <primaryKey column="to_whom" sequenceNumberInPK="2"/>
+         <primaryKey column="who" sequenceNumberInPK="3"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="who"/>
+            <column ascending="true" name="to_whom"/>
+         </index>
+      </table>
+      <table name="request_asset" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="request_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_request_asset_request_id" implied="false" onDeleteCascade="true" table="request"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="asset_id" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED">
+            <parent column="id" foreignKey="fk_request_asset_asset_id" implied="false" onDeleteCascade="false" table="asset"/>
+         </column>
+         <primaryKey column="asset_id" sequenceNumberInPK="1"/>
+         <primaryKey column="request_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="request_id"/>
+            <column ascending="true" name="asset_id"/>
+         </index>
+         <index name="fk_request_asset_asset_id" unique="false">
+            <column ascending="true" name="asset_id"/>
+         </index>
+      </table>
+      <table name="sequence" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="1" name="next_value" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="current_value" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="title" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="uk_sequence_title" unique="true">
+            <column ascending="true" name="title"/>
+         </index>
+      </table>
+      <table name="subarticle" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="parent_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_subarticle_parent_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="child_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED">
+            <parent column="id" foreignKey="fk_subarticle_child_id" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <primaryKey column="child_id" sequenceNumberInPK="1"/>
+         <primaryKey column="parent_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="parent_id"/>
+            <column ascending="true" name="child_id"/>
+         </index>
+         <index name="fk_subarticle_child_id" unique="false">
+            <column ascending="true" name="child_id"/>
+         </index>
+      </table>
+      <table name="view_article_category_meta" remarks="" type="VIEW" viewSql="select `eurobug`.`article_category`.`id` AS `id`,`eurobug`.`article`.`meta` AS `meta` from (`eurobug`.`article_category` join `eurobug`.`article` on((`eurobug`.`article_category`.`title_article_id` = `eurobug`.`article`.`id`)))">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+      </table>
+      <table name="view_email_address" remarks="" type="VIEW" viewSql="select `eurobug`.`email_address`.`id` AS `id`,concat(`eurobug`.`email_address`.`local`,'@',`eurobug`.`email_domain`.`value`) AS `email_address` from (`eurobug`.`email_address` join `eurobug`.`email_domain` on((`eurobug`.`email_address`.`domain_id` = `eurobug`.`email_domain`.`id`)))">
+         <column autoUpdated="false" defaultValue="0" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="email_address" nullable="true" remarks="" size="65535" type="TEXT"/>
+      </table>
+      <table name="view_form_button" remarks="" type="VIEW" viewSql="select `view_form_element`.`element_id` AS `element_id`,`view_form_element`.`element_type_meta` AS `element_type_meta`,`view_form_element`.`form_id` AS `form_id`,`view_form_element`.`form_meta` AS `form_meta`,`view_form_element`.`language_id` AS `language_id`,`view_form_element`.`language_code` AS `language_code`,`view_form_element`.`message` AS `message` from `eurobug`.`view_form_element` where (`view_form_element`.`element_type_meta` = 'form_element_button')">
+         <column autoUpdated="false" digits="0" id="0" name="element_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="element_type_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="form_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="form_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="5" name="language_code" nullable="false" remarks="" size="3" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="message" nullable="false" remarks="" size="65535" type="TEXT"/>
+      </table>
+      <table name="view_form_element" remarks="" type="VIEW" viewSql="select `eurobug`.`article`.`id` AS `element_id`,`eurobug`.`article_type`.`meta` AS `element_type_meta`,`view_article_category_meta`.`id` AS `form_id`,`view_article_category_meta`.`meta` AS `form_meta`,`eurobug`.`language`.`id` AS `language_id`,`eurobug`.`language`.`code` AS `language_code`,`eurobug`.`article_localized`.`message` AS `message` from (((((`eurobug`.`article` join `eurobug`.`article_localized` on((`eurobug`.`article`.`id` = `eurobug`.`article_localized`.`article_id`))) join `eurobug`.`article_type` on((`eurobug`.`article`.`type_id` = `eurobug`.`article_type`.`id`))) join `eurobug`.`language` on((`eurobug`.`article_localized`.`language_id` = `eurobug`.`language`.`id`))) join `eurobug`.`article_classification` on((`eurobug`.`article`.`id` = `eurobug`.`article_classification`.`article_id`))) join `eurobug`.`view_article_category_meta` on((`view_article_category_meta`.`id` = `eurobug`.`article_classification`.`article_category_id`)))">
+         <column autoUpdated="false" digits="0" id="0" name="element_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="element_type_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="form_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="form_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="5" name="language_code" nullable="false" remarks="" size="3" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="message" nullable="false" remarks="" size="65535" type="TEXT"/>
+      </table>
+      <table name="view_form_label" remarks="" type="VIEW" viewSql="select `view_form_element`.`element_id` AS `element_id`,`view_form_element`.`element_type_meta` AS `element_type_meta`,`view_form_element`.`form_id` AS `form_id`,`view_form_element`.`form_meta` AS `form_meta`,`view_form_element`.`language_id` AS `language_id`,`view_form_element`.`language_code` AS `language_code`,`view_form_element`.`message` AS `message` from `eurobug`.`view_form_element` where (`view_form_element`.`element_type_meta` = 'form_element_label')">
+         <column autoUpdated="false" digits="0" id="0" name="element_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="element_type_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="form_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="form_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="5" name="language_code" nullable="false" remarks="" size="3" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="message" nullable="false" remarks="" size="65535" type="TEXT"/>
+      </table>
+      <table name="view_form_legend" remarks="" type="VIEW" viewSql="select `view_form_element`.`element_id` AS `element_id`,`view_form_element`.`element_type_meta` AS `element_type_meta`,`view_form_element`.`form_id` AS `form_id`,`view_form_element`.`form_meta` AS `form_meta`,`view_form_element`.`language_id` AS `language_id`,`view_form_element`.`language_code` AS `language_code`,`view_form_element`.`message` AS `message` from `eurobug`.`view_form_element` where (`view_form_element`.`element_type_meta` = 'form_element_legend')">
+         <column autoUpdated="false" digits="0" id="0" name="element_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="element_type_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="form_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="form_meta" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="language_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="5" name="language_code" nullable="false" remarks="" size="3" type="CHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="message" nullable="false" remarks="" size="65535" type="TEXT"/>
+      </table>
+   </tables>
+</database>

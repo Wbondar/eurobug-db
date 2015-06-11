@@ -1,0 +1,36 @@
+// dot 2.38.0 on Linux 3.19.0-18-generic
+// SchemaSpy rev 590
+digraph "view_form_label" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "view_form_label" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">view_form_label</TD></TR>
+      <TR><TD PORT="element_id" COLSPAN="3" ALIGN="LEFT">element_id</TD></TR>
+      <TR><TD PORT="element_type_meta" COLSPAN="3" ALIGN="LEFT">element_type_meta</TD></TR>
+      <TR><TD PORT="form_id" COLSPAN="3" ALIGN="LEFT">form_id</TD></TR>
+      <TR><TD PORT="form_meta" COLSPAN="3" ALIGN="LEFT">form_meta</TD></TR>
+      <TR><TD PORT="language_id" COLSPAN="3" ALIGN="LEFT">language_id</TD></TR>
+      <TR><TD PORT="language_code" COLSPAN="3" ALIGN="LEFT">language_code</TD></TR>
+      <TR><TD PORT="message" COLSPAN="3" ALIGN="LEFT">message</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">view</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/view_form_label.html"
+    tooltip="view_form_label"
+  ];
+}
