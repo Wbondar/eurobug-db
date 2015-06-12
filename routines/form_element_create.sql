@@ -13,9 +13,13 @@ SQL SECURITY DEFINER
 proc:BEGIN
     SET @var_element_type_meta = CONCAT('form_element_', arg_element_type_meta)
     ;
-    CALL article_create_with_meta (@var_element_type_meta, arg_element_meta, arg_element_id)
+    CALL article_type_read (@var_element_type_meta, @var_element_type_id)
     ;
-    CALL article_classification_create_with_meta (CONCAT('form_', arg_form_meta), arg_element_id)
+    CALL article_create (@var_element_type_id, arg_element_meta, arg_element_id)
+    ;
+    CALL form_read (arg_form_meta, @var_form_id)
+    ;
+    CALL subarticle_create (@var_form_id, arg_element_id)
     ;
 END
 ENDROUTINE

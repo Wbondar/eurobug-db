@@ -146,4 +146,17 @@ CALL article_localization_create_with_code (@form_signup_button_submit_id, 'pol'
 ;
 CALL article_localization_create_with_code (@form_signup_button_submit_id, 'rus', 'Выслать запрос')
 ;
+
+
+CALL page_create ('home', @page_home_id)
+;
+CALL article_localization_create_with_code (@page_home_id, 'pol', 'Strona domowa.')
+;
+CALL article_localization_create_with_code (@page_home_id, 'rus', 'Домашняя страница.')
+;
+CALL page_update_section_add (@page_home_id, @form_login_id)
+;
+CALL page_update_section_add (@page_home_id, @form_signup_id)
+;
+
 COMMIT;

@@ -240,5 +240,9 @@
       <name>USER_PRIVILEGED_PASSWORD</name>
       <value>privileged</value>
     </parameter>
+    <parameter>
+      <name>DATABASE_SCHEMA</name>
+      <value>eurobug</value>
+    </parameter>
   </parameters>
 </project>
