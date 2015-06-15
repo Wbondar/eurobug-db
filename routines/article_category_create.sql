@@ -21,12 +21,11 @@ proc:BEGIN
     INSERT INTO article_category (id, title_article_id) VALUES
     (@var_article_category_id, @var_title_article_id)
     ;
-    IF @var_article_category_id IS NOT NULL THEN
-        CALL setval ('seq_article_category_id', @var_article_category_id)
-        ;
-        SELECT @var_article_category_id INTO arg_article_category_id
-        ;
-    END IF
+    SELECT id INTO arg_article_category_id
+    FROM article_category 
+    WHERE article_category.id = @var_article_category_id
+    ;
+    CALL setval ('seq_article_category_id', arg_article_category_id)
     ;
 END
 ENDROUTINE

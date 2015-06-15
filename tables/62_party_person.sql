@@ -1,4 +1,4 @@
-CREATE TABLE party_staff
+CREATE TABLE party_person
 (
       party_id  ${PARTY_ID_TYPE}  NOT NULL
     , person_id ${PERSON_ID_TYPE} NOT NULL

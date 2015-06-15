@@ -1,96 +1,27 @@
-CALL sequence_create ('seq_article_id', @seq_article_id)
+CALL sequence_create ('seq_article_id', @var_seq_article_id)
 ;
-CALL sequence_create ('seq_article_type_id', @seq_article_type_id)
+CALL sequence_create ('seq_article_type_id', @var_seq_article_type_id)
 ;
-CALL sequence_create ('seq_article_category_id', @seq_article_category_id)
+CALL sequence_create ('seq_article_category_id', @var_seq_article_category_id)
 ;
-
-
-INSERT INTO article_type (id, meta) VALUES 
-  (1, 'title_language')
-, (2, 'title_locale')
-, (3, 'title_party')
-, (4, 'title_nationality')
-, (5, 'title_asset_type')
-, (6, 'title_asset')
-, (8, 'resume')
-, (9, 'resume_field')
-, (10, 'preferred_locale')
+CALL sequence_create ('seq_party_id', @var_seq_party_id)
 ;
-
-
-INSERT INTO article (id, type_id, meta) VALUES
-(1, 1, 'pol'), (2, 1, 'rus'), (3, 1, 'bel'), (4, 1, 'ukr')
+CALL sequence_create ('seq_party_type_id', @var_seq_party_type_id)
 ;
-INSERT INTO article (id, type_id, meta) VALUES
-(13, 2, 'poland'), (14, 2, 'russia'), (15, 2, 'belarussia'), (16, 2, 'ukraine')
+CALL sequence_create ('seq_person_id', @var_seq_person_id)
 ;
-INSERT INTO article (id, type_id, meta) VALUES
-(8, 4, 'polish'), (9, 4, 'russian'), (10, 4, 'belarussian'), (11, 4, 'ukrainian')
+CALL sequence_create ('seq_language_id', @var_seq_language_id)
 ;
-INSERT INTO article (id, type_id, meta) VALUES
-(12, 5, 'resume')
+CALL sequence_create ('seq_asset_id', @var_seq_asset_id)
 ;
-INSERT INTO article (id, type_id, meta) VALUES
-(5, 10, 'at_my_place'), (6, 10, 'another_place'), (7, 10, 'poland')
+CALL sequence_create ('seq_asset_type_id', @var_seq_asset_type_id)
+;
+CALL sequence_create ('seq_asset_category_id', @var_seq_asset_category_id)
 ;
 
-
-INSERT INTO language (id, code, title_article_id) VALUES
-(1, 'pol', 1), (2, 'rus', 2), (3, 'bel', 3), (4, 'ukr', 4)
+CALL language_create ('pol', 'To zdanie nie jest dostępne w języku polskim. Poprosze obrać innyj język lub skontaktować się z developer\'ami.', @var_pol_id)
 ;
-
-
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(1, 1, 'Polski'), (1, 2, 'Польский'), (1, 4, 'Польска')
-;
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(2, 1, 'Rosyjski'), (2, 2, 'Русский'), (2, 4, 'Росiйська')
-;
-
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(5, 1, 'W miejscu zamieszkania.'), (5, 2, 'На месте жительства.'), (5, 4, 'В мiсцi мешкання.')
-;
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(6, 1, 'Za granica.'), (6, 2, 'За гранией.'), (6, 4, 'За кордоном.')
-;
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(7, 1, 'W Polsce.'), (7, 2, 'В Польше.'), (7, 4, 'В Польшi.')
-;
-
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(8, 1, 'Polska.'), (8, 2, 'Польша.'), (8, 4, 'Польша.')
-;
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(9, 1, 'Rosja.'), (9, 2, 'Россия.'), (9, 4, 'Росiя.')
-;
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(10, 1, 'Belarosja.'), (10, 2, 'Белорусия.'), (10, 4, 'Белорусiя.')
-;
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(11, 1, 'Ukraina.'), (11, 2, 'Украина.'), (11, 4, 'Украiна.')
-;
-
-INSERT INTO article_localized (article_id, language_id, message) VALUES
-(12, 1, 'Curriculum vitae.'), (12, 2, 'Резюме.'), (12, 4, 'Резюме.')
-;
-
-
-INSERT INTO locale (id, title_article_id) VALUES
-(1, 13), (2, 14), (3, 15), (4, 16)
-;
-INSERT INTO locale_language (locale_id, language_id) VALUES
-(1, 1), (2, 2), (3, 3), (4, 4)
-;
-
-
-INSERT INTO nationality (id, title_article_id) VALUES
-(1, 8),(2, 9),(3, 10),(4, 11)
-;
-
-
-INSERT INTO asset_type (id, title_article_id) VALUES
-(1, 12)
+CALL language_create ('rus', 'Это сообщение не доступно на русском языке. Пожалуйста, выберите другой язык или свяжитесь с разработчиками.', @var_rus_id)
 ;
 
 CALL form_create ('login', @form_login_id)
@@ -150,13 +81,75 @@ CALL article_localization_create_with_code (@form_signup_button_submit_id, 'rus'
 
 CALL page_create ('home', @page_home_id)
 ;
-CALL article_localization_create_with_code (@page_home_id, 'pol', 'Strona domowa.')
+CALL page_title_localization_create (@page_home_id, 'pol', 'Strona domowa.')
 ;
-CALL article_localization_create_with_code (@page_home_id, 'rus', 'Домашняя страница.')
+CALL page_title_localization_create (@page_home_id, 'rus', 'Домашняя страница.')
 ;
-CALL page_update_section_add (@page_home_id, @form_login_id)
+CALL page_update_article_add (@page_home_id, @form_login_id)
 ;
-CALL page_update_section_add (@page_home_id, @form_signup_id)
+CALL page_update_article_add (@page_home_id, @form_signup_id)
+;
+
+CALL account_create ('wbond', 'wbond', @var_wbond_id)
+;
+
+CALL party_update_email_create_with_domain (@var_wbond_id, 'vladyslavbond', 'protonmail.ch', @var_wbond_email_id)
+;
+CALL party_update_tel_create (@var_wbond_id, '+480549931', @var_wbond_tel_id)
+;
+
+CALL position_create ('sysadmin', @var_position_sysadmin_id)
+;
+CALL position_title_localization_create (@var_position_sysadmin_id, 'pol', 'Administrator systemowy.')
+;
+CALL position_title_localization_create (@var_position_sysadmin_id, 'rus', 'Системный администратор.')
+;
+CALL position_create ('bookkeeper', @var_position_bookkeeper_id)
+;
+CALL position_title_localization_create (@var_position_bookkeeper_id, 'pol', 'Księgowy.')
+;
+CALL position_title_localization_create (@var_position_bookkeeper_id, 'rus', 'Бухгалтер.')
+;
+CALL position_create ('java', @var_position_java_id)
+;
+CALL position_title_localization_create (@var_position_java_id, 'pol', 'Programista Java.')
+;
+CALL position_title_localization_create (@var_position_java_id, 'rus', 'Программист Java.')
+;
+
+CALL nationality_create_with_meta ('pole', @var_pole_id)
+;
+CALL nationality_create_with_meta ('ukrainian', @var_ukrainian_id)
+;
+
+CALL person_create_for_party (@var_wbond_id, 'M', @var_ukrainian_id, @var_person_wbond_id)
+;
+/*CALL person_update_name_localization_create (@var_person_wbond_id, 'pol', 'Vladyslav', 'Bondarenko')
+;
+CALL person_update_name_localization_create (@var_person_wbond_id, 'rus', 'Владислав', 'Бондаренко')
+;*/
+
+CALL resume_create (@var_person_wbond_id, @var_resume_id)
+;
+
+CALL resume_update_position_add (@var_resume_id, @var_position_sysadmin_id)
+;
+CALL resume_update_position_add (@var_resume_id, @var_position_bookkeeper_id)
+;
+
+CALL educational_institution_create ('vtek', @var_vtek_id)
+;
+CALL educational_institution_create ('pwsz', @var_pwsz_id)
+;
+CALL party_create_with_meta ('office', 'eurobug', @var_eurobug_id)
+;
+
+CALL resume_update_education_add (@var_resume_id, @var_vtek_id, '2010-01-01', '2013-01-01')
+;
+CALL resume_update_education_add (@var_resume_id, @var_pwsz_id, '2013-01-01', '2016-01-01')
+;
+
+CALL resume_update_experience_add (@var_resume_id, @var_eurobug_id, @var_position_java_id, '2015-07-08')
 ;
 
 COMMIT;

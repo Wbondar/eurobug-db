@@ -6,7 +6,7 @@ SELECT
     , article.meta              AS article_meta 
     , COALESCE(language.id, (SELECT id FROM language WHERE LOWER(code) = 'eng')) AS language_id 
     , COALESCE(language.code, 'eng')                                             AS language_code
-    , COALESCE(article_localized.message, 'This message is not yet available in given language. Please try another language or contact the developers.') AS article_message
+    , COALESCE(article_localized.message, (SELECT l.placeholder FROM language AS l WHERE l.id = language.id), 'This message is not yet available in given language. Please try another language or contact the developers.') AS article_message
 FROM article 
     CROSS JOIN language 
     LEFT JOIN article_localized ON (CONCAT(article.id, language.id) = CONCAT(article_localized.article_id, article_localized.language_id))

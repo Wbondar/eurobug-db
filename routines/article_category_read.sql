@@ -7,7 +7,7 @@ CREATE PROCEDURE article_category_read
 )
 LANGUAGE SQL
 NOT DETERMINISTIC
-MODIFIES SQL DATA
+READS SQL DATA
 SQL SECURITY DEFINER
 BEGIN
     SELECT article_category.id INTO @var_article_category_id

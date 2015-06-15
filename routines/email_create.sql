@@ -1,5 +1,5 @@
 DELIMITER ENDROUTINE
-
+/* TODO: Make the following procedure work. */
 CREATE PROCEDURE email_create
 (
       IN  arg_email_address ${EMAIL_ADDRESS_TYPE} 

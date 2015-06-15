@@ -15,7 +15,7 @@ BEGIN
     WHERE LOWER(article.meta) = LOWER(arg_asset_type_meta)
     ;
     IF @var_asset_type_id IS NULL THEN
-        CALL asset_type_create (arg_asset_type_meta, @var_asset_type_id)
+        CALL asset_type_create_with_meta (arg_asset_type_meta, @var_asset_type_id)
         ;
     END IF 
     ;
